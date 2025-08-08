@@ -9,8 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout code with PAT
       uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GH_PAT }}
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
@@ -34,11 +36,8 @@ jobs:
         git config user.email "actions@github.com"
 
     - name: Update Helm chart with new image tag
-      env:
-        GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         sed -i "s|tag:.*|tag: latest|" helm/values.yaml
         git add helm/values.yaml
         git commit -m "CI: Update image tag to latest" || echo "No changes to commit"
-        git remote set-url origin https://x-access-token:${GH_PAT}@github.com/suryat5/whiteboard-new.git
         git push origin main
