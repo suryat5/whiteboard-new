@@ -1,3 +1,6 @@
 image:
   repository: suryatejasanku/whiteboard-new
   tag: latest
+ 
+ service:
+  port: 8000
