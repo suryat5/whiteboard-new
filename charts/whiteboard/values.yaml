@@ -14,14 +14,14 @@ autoscaling:
   targetMemoryUtilizationPercentage: 75
 
 ingress:
-  enabled: false
-  className: ""
+  enabled: false   # Set to true if you're using ingress
+  className: nginx
   annotations: {}
   hosts:
-    - host: chart-example.local
+    - host: whiteboard.local
       paths:
         - path: /
-          pathType: ImplementationSpecific
+          pathType: Prefix
   tls: []
 
 serviceAccount:
