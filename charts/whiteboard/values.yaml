@@ -13,8 +13,11 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 75
 
+serviceAccount:
+  create: false
+
 ingress:
-  enabled: false   # Set to true if you're using ingress
+  enabled: false        # Change to true only if you want to use Ingress
   className: nginx
   annotations: {}
   hosts:
@@ -23,6 +26,3 @@ ingress:
         - path: /
           pathType: Prefix
   tls: []
-
-serviceAccount:
-  create: false
