@@ -36,7 +36,8 @@ jobs:
         git config user.email "actions@github.com"
 
     - name: Update Helm chart with new image tag
-      run: sed -i "s|tag:.*|tag: latest|" charts/whiteboard/values.yaml
+      run: |
+        sed -i "s|tag:.*|tag: latest|" charts/whiteboard/values.yaml
 
         git add helm/values.yaml
         git commit -m "CI: Update image tag to latest" || echo "No changes to commit"
