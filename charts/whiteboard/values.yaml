@@ -4,3 +4,9 @@ image:
  
  service:
   port: 8000
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 75
